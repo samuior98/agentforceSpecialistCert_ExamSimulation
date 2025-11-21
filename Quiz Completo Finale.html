@@ -4267,27 +4267,31 @@
         }, 1000);
       }
 
-
       function lockQuiz() {
         document
           .querySelectorAll("input[name='opt']")
           .forEach((el) => (el.disabled = true));
       }
 
+      function clearActiveTabs() {
+        ["t1","t2","t3","t4","t5","t_history"].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.remove("active");
+        });
+      }
+
       function loadFastSimulation(n) {
         // reset selezione tab
         clearActiveTabs();
-        // Riattiva elementi quiz quando cambio sezione
-        document.getElementById("qnum").style.display = "block";
-        document.getElementById("qtext").style.display = "block";
-        document.getElementById("opts").style.display = "block";
-        document.getElementById("fb").style.display = "none";
-        document.querySelector(".progress").style.display = "block";
-        document.getElementById("remaining").style.display = "block";
+        // Mostra tutto perché NON siamo in History
+        document.getElementById("sidebar").style.display = "block";
         document.getElementById("timer").style.display = "block";
+        document.getElementById("remaining").style.display = "block";
+        document.getElementById("qnum").style.display = "block";
+        document.querySelector(".progress").style.display = "block";
+        document.querySelector(".subcard").style.display = "block";
         document.querySelector("button[onclick='next()']").style.display = "inline-block";
         document.getElementById("history").style.display = "none";
-
       
         // attiva il tab giusto
         if (n === 10) document.getElementById("t3").classList.add("active");
@@ -4320,17 +4324,15 @@
       function loadSet(s) {
         // reset selezione tab
         clearActiveTabs();
-        // Riattiva elementi quiz quando cambio sezione
-        document.getElementById("qnum").style.display = "block";
-        document.getElementById("qtext").style.display = "block";
-        document.getElementById("opts").style.display = "block";
-        document.getElementById("fb").style.display = "none";
-        document.querySelector(".progress").style.display = "block";
-        document.getElementById("remaining").style.display = "block";
+        // Mostra tutto perché NON siamo in History
+        document.getElementById("sidebar").style.display = "block";
         document.getElementById("timer").style.display = "block";
+        document.getElementById("remaining").style.display = "block";
+        document.getElementById("qnum").style.display = "block";
+        document.querySelector(".progress").style.display = "block";
+        document.querySelector(".subcard").style.display = "block";
         document.querySelector("button[onclick='next()']").style.display = "inline-block";
         document.getElementById("history").style.display = "none";
-
 
         // attiva il tab corretto
         if (s === "set1") document.getElementById("t1").classList.add("active");
@@ -4602,34 +4604,28 @@
       }
 
       function showHistorySection() {
-        // Attiva tab History
         clearActiveTabs();
         document.getElementById("t_history").classList.add("active");
-    
-        // Nascondi tutta la parte quiz
-        document.getElementById("qnum").style.display = "none";
-        document.getElementById("qtext").style.display = "none";
-        document.getElementById("opts").style.display = "none";
-        document.getElementById("fb").style.display = "none";
-        document.querySelector(".progress").style.display = "none";
-        document.getElementById("remaining").style.display = "none";
-        document.getElementById("timer").style.display = "none";
-    
-        // Nascondi bottone NEXT
-        document.querySelector("button[onclick='next()']").style.display = "none";
-    
-        // Mostra solo History
-        document.getElementById("summary").style.display = "none";
-        document.getElementById("history").style.display = "block";
-    
-        loadHistory();
-    }
       
-      function clearActiveTabs() {
-        ["t1","t2","t3","t4","t5","t_history"].forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.classList.remove("active");
-        });
+        // Nascondi completamente tutto il contenuto del quiz
+        document.getElementById("timer").style.display = "none";
+        document.getElementById("remaining").style.display = "none";
+        document.getElementById("qnum").style.display = "none";
+        document.querySelector(".progress").style.display = "none";
+        document.querySelector(".subcard").style.display = "none";
+        document.querySelector("button[onclick='next()']").style.display = "none";
+      
+        // Sidebar nascosta
+        document.getElementById("sidebar").style.display = "none";
+      
+        // Nascondi eventuali summary rimasti
+        document.getElementById("summary").style.display = "none";
+      
+        // Mostra il blocco History
+        document.getElementById("history").style.display = "block";
+      
+        // Renderizza lo storico
+        renderHistory();
       }
 
       // Init
