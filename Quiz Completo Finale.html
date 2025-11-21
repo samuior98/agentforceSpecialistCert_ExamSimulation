@@ -304,6 +304,9 @@
             <button id="t3" onclick="loadSet(&#39;random&#39;)" class="">
               Simulation (60)
             </button>
+            <button id="t4" onclick="showHistorySection()" class="">
+              History
+            </button>
           </div>
 
           <div class="timer" id="timer">⏳ 77:57</div>
@@ -4266,6 +4269,8 @@
       }
 
       function loadSet(s) {
+        document.getElementById("history").style.display = "none";
+        document.getElementById("t4").classList.remove("active");
         curr = s;
         idx = 0;
         quizFinished = false;
@@ -4541,6 +4546,29 @@
       
         html += "</tbody></table>";
         list.innerHTML = html;
+      }
+
+      function showHistorySection() {
+        // Disattiva tab attivi
+        document.getElementById("t1")?.classList.remove("active");
+        document.getElementById("t2")?.classList.remove("active");
+        document.getElementById("t3")?.classList.remove("active");
+      
+        // Attiva History tab
+        document.getElementById("t4")?.classList.add("active");
+      
+        // Nasconde tutto il resto
+        document.getElementById("summary").style.display = "none";
+        document.getElementById("qtext").innerText = "";
+        document.getElementById("opts").innerHTML = "";
+        document.getElementById("fb").style.display = "none";
+        document.getElementById("remaining").innerText = "";
+        document.getElementById("qnum").innerText = "";
+        document.getElementById("bar").style.width = "0%";
+      
+        // Mostra la sezione HISTORY
+        renderHistory();
+        document.getElementById("history").style.display = "block";
       }
 
 
