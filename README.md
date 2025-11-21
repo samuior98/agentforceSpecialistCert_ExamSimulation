@@ -9,5 +9,5 @@ This project contains a complete simulation of the Agentforce Specialist Certifi
 - Animations
 - Final assessment with percentage and pass/fail
 
-## How use
-Simply open `index.html` in a browser (Chrome recommended).
+## ▶️ Start the Quiz
+🔗 **[Open](https://samuior98.github.io/agentforceSpecialistCert_ExamSimulation/Quiz%20Completo%20Finale.html)** in a browser (Chrome recommended).
