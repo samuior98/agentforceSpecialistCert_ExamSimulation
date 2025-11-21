@@ -1,4 +1,6 @@
-# This project contains a complete simulation of the Agentforce Specialist Certification exam (updated November 2025), with:
+#  Agentforce Specialist Cert – Quiz Simulation
+
+This project contains a complete simulation of the Agentforce Specialist Certification exam (updated November 2025), with:
 
 - Set 1 (60 questions)
 - Set 2 (60 questions)
@@ -9,6 +11,3 @@
 
 ## How use
 Simply open `index.html` in a browser (Chrome recommended).
-
-## Structure
-- `index.html` — Quiz
