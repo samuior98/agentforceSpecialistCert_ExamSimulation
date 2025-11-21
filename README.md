@@ -1,17 +1,14 @@
-# Agentforce Specialist Cert – Quiz Simulation
+# This project contains a complete simulation of the Agentforce Specialist Certification exam (updated November 2025), with:
 
-Questo progetto contiene una simulazione completa dell'esame **Agentforce Specialist Certification**, con:
-- Set 1 (random)
-- Set 2 (random)
-- Simulazione da 60 domande
-- Ripeti errori
-- Timer stile esame
-- Animazioni
-- Valutazione finale con percentuale e pass/fail
+- Set 1 (60 questions)
+- Set 2 (60 questions)
+- 60-question simulation
+- Exam-style timer
+- Animations
+- Final assessment with percentage and pass/fail
 
-## Come usarlo
-Apri semplicemente `index.html` in un browser (Chrome consigliato).
+## How use
+Simply open `index.html` in a browser (Chrome recommended).
 
-## Struttura
-- `index.html` — Il quiz completo
-- `assets/` — Cartella risorse (vuota per ora, pronta per CSS/JS esterni)
+## Structure
+- `index.html` — Quiz
