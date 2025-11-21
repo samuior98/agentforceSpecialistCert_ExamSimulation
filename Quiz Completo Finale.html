@@ -4275,35 +4275,29 @@
       }
 
       function loadFastSimulation(n) {
-        // disattiva history se attiva
-        document.getElementById("history").style.display = "none";
-        
-        // tab styling
-        ["t1","t2","t3","t4","t5","t_history"].forEach(id => {
-          document.getElementById(id)?.classList.remove("active");
-        });
+        // reset selezione tab
+        clearActiveTabs();
       
+        // attiva il tab giusto
         if (n === 10) document.getElementById("t3").classList.add("active");
         if (n === 15) document.getElementById("t4").classList.add("active");
         if (n === 20) document.getElementById("t5").classList.add("active");
       
-        // Unisci set1 + set2
-        let allQs = [...DATA.set1, ...DATA.set2];
+        document.getElementById("history").style.display = "none";
       
-        // mescola
+        // Unisci set 1 + set 2
+        let allQs = [...DATA.set1, ...DATA.set2];
         allQs = shuffle(allQs);
       
-        // prendi i primi n
         currentSet = allQs.slice(0, n);
       
-        curr = "fast" + n;   // es: fast10, fast15, fast20
+        curr = "fast" + n;
         idx = 0;
         quizFinished = false;
       
-        // timer (se vuoi durate diverse, dimmelo)
-        startTimer(60 * 10); // 10 minuti di default
+        // timer simulazione veloce: 1 min per domanda
+        startTimer(n * 60);
       
-        // reset UI
         document.getElementById("summary").style.display = "none";
         document.getElementById("remaining").innerText = "";
         document.getElementById("qnum").innerText = "";
@@ -4313,36 +4307,27 @@
       }
 
       function loadSet(s) {
+        // reset selezione tab
+        clearActiveTabs();
+      
+        // attiva il tab corretto
+        if (s === "set1") document.getElementById("t1").classList.add("active");
+        if (s === "set2") document.getElementById("t2").classList.add("active");
+      
+        // nascondi history
         document.getElementById("history").style.display = "none";
-        document.getElementById("t4").classList.remove("active");
+      
         curr = s;
         idx = 0;
         quizFinished = false;
+      
         document.getElementById("summary").style.display = "none";
-
-        document.getElementById("t1").classList.toggle("active", s === "set1");
-        document.getElementById("t2").classList.toggle("active", s === "set2");
-        document
-          .getElementById("t3")
-          .classList.toggle("active", s === "random");
-
-        startTimer(105 * 60); // 1h45 per tutte le modalità
-
-        if (s === "set1") {
-          currentSet = shuffle(DATA.set1);
-          answers["set1"] = {};
-        } else if (s === "set2") {
-          currentSet = shuffle(DATA.set2);
-          answers["set2"] = {};
-        } else if (s === "random") {
-          currentSet = shuffle(DATA.all).slice(0, 60);
-          answers["random"] = {};
-        } else if (curr.startsWith("fast")) {
-          document.getElementById("side-title").innerText = "Fast Simulation";
-        }
-
-        render();
+      
+        currentSet = DATA[s];
+        startTimer(currentSet.length * 60);
+      
         buildSidebar();
+        render();
       }
 
       function buildSidebar() {
@@ -4595,15 +4580,10 @@
       }
 
       function showHistorySection() {
-        // Rimuove tutti gli "active" dai tab
-        ["t1","t2","t3","t4","t5","t_history"].forEach(id => {
-          document.getElementById(id)?.classList.remove("active");
-        });
+        clearActiveTabs();
+        document.getElementById("t_history").classList.add("active");
       
-        // Attiva solo il tab History
-        document.getElementById("t_history")?.classList.add("active");
-      
-        // Nasconde tutto il resto
+        // Nascondi interfaccia quiz
         document.getElementById("summary").style.display = "none";
         document.getElementById("qtext").innerText = "";
         document.getElementById("opts").innerHTML = "";
@@ -4615,6 +4595,13 @@
         // Mostra History
         renderHistory();
         document.getElementById("history").style.display = "block";
+      }
+
+      function clearActiveTabs() {
+        ["t1","t2","t3","t4","t5","t_history"].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.remove("active");
+        });
       }
 
       // Init
