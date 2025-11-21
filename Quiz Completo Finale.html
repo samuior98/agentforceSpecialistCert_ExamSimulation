@@ -301,10 +301,16 @@
             <button id="t2" onclick="loadSet(&#39;set2&#39;)" class="active">
               Set 2
             </button>
-            <button id="t3" onclick="loadSet(&#39;random&#39;)" class="">
-              Simulation (60)
+            <button id="t3" onclick="loadFastSimulation(10)" class="">
+              Fast Sim 10
             </button>
-            <button id="t4" onclick="showHistorySection()" class="">
+            <button id="t4" onclick="loadFastSimulation(15)" class="">
+              Fast Sim 15
+            </button>
+            <button id="t5" onclick="loadFastSimulation(20)" class="">
+              Fast Sim 20
+            </button>
+            <button id="t_history" onclick="showHistorySection()" class="">
               History
             </button>
           </div>
@@ -4268,6 +4274,44 @@
           .forEach((el) => (el.disabled = true));
       }
 
+      function loadFastSimulation(n) {
+        // disattiva history se attiva
+        document.getElementById("history").style.display = "none";
+        
+        // tab styling
+        ["t1","t2","t3","t4","t5","t_history"].forEach(id => {
+          document.getElementById(id)?.classList.remove("active");
+        });
+      
+        if (n === 10) document.getElementById("t3").classList.add("active");
+        if (n === 15) document.getElementById("t4").classList.add("active");
+        if (n === 20) document.getElementById("t5").classList.add("active");
+      
+        // Unisci set1 + set2
+        let allQs = [...DATA.set1, ...DATA.set2];
+      
+        // mescola
+        allQs = shuffle(allQs);
+      
+        // prendi i primi n
+        currentSet = allQs.slice(0, n);
+      
+        curr = "fast" + n;   // es: fast10, fast15, fast20
+        idx = 0;
+        quizFinished = false;
+      
+        // timer (se vuoi durate diverse, dimmelo)
+        startTimer(60 * 10); // 10 minuti di default
+      
+        // reset UI
+        document.getElementById("summary").style.display = "none";
+        document.getElementById("remaining").innerText = "";
+        document.getElementById("qnum").innerText = "";
+      
+        buildSidebar();
+        render();
+      }
+
       function loadSet(s) {
         document.getElementById("history").style.display = "none";
         document.getElementById("t4").classList.remove("active");
@@ -4293,6 +4337,8 @@
         } else if (s === "random") {
           currentSet = shuffle(DATA.all).slice(0, 60);
           answers["random"] = {};
+        } else if (curr.startsWith("fast")) {
+          document.getElementById("side-title").innerText = "Fast Simulation";
         }
 
         render();
@@ -4555,7 +4601,7 @@
         document.getElementById("t3")?.classList.remove("active");
       
         // Attiva History tab
-        document.getElementById("t4")?.classList.add("active");
+        document.getElementById("t_history")?.classList.add("active");
       
         // Nasconde tutto il resto
         document.getElementById("summary").style.display = "none";
