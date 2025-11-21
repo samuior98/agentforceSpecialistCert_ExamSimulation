@@ -4595,12 +4595,12 @@
       }
 
       function showHistorySection() {
-        // Disattiva tab attivi
-        document.getElementById("t1")?.classList.remove("active");
-        document.getElementById("t2")?.classList.remove("active");
-        document.getElementById("t3")?.classList.remove("active");
+        // Rimuove tutti gli "active" dai tab
+        ["t1","t2","t3","t4","t5","t_history"].forEach(id => {
+          document.getElementById(id)?.classList.remove("active");
+        });
       
-        // Attiva History tab
+        // Attiva solo il tab History
         document.getElementById("t_history")?.classList.add("active");
       
         // Nasconde tutto il resto
@@ -4612,11 +4612,10 @@
         document.getElementById("qnum").innerText = "";
         document.getElementById("bar").style.width = "0%";
       
-        // Mostra la sezione HISTORY
+        // Mostra History
         renderHistory();
         document.getElementById("history").style.display = "block";
       }
-
 
       // Init
       loadSet("set1");
