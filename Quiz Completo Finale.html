@@ -4309,6 +4309,7 @@
         curr = "fast" + n;
         idx = 0;
         quizFinished = false;
+        answers[curr] = {};   // <-- reset totale della simulazione
       
         // timer simulazione veloce: 1 min per domanda
         startTimer(n * 60);
