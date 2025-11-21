@@ -4278,13 +4278,13 @@
         // reset selezione tab
         clearActiveTabs();
         // Ripristina la UI del quiz
-        document.getElementById("qtext").style.display = "block";
-        document.getElementById("opts").style.display = "block";
-        document.getElementById("fb").style.display = "block";
+        document.querySelector(".subcard").style.display = "block";
+        document.querySelector("button[onclick='next()']").style.display = "inline-block";
+        document.getElementById("progress").style.display = "block";
+        document.getElementById("bar").style.display = "block";
+        document.getElementById("timer").style.display = "block";
         document.getElementById("remaining").style.display = "block";
         document.getElementById("qnum").style.display = "block";
-        document.getElementById("bar").style.display = "block";
-        document.querySelector("button[onclick='next()']").style.display = "block";
       
         // attiva il tab giusto
         if (n === 10) document.getElementById("t3").classList.add("active");
@@ -4318,14 +4318,14 @@
         // reset selezione tab
         clearActiveTabs();
         // Ripristina la UI del quiz
-        document.getElementById("qtext").style.display = "block";
-        document.getElementById("opts").style.display = "block";
-        document.getElementById("fb").style.display = "block";
+        document.querySelector(".subcard").style.display = "block";
+        document.querySelector("button[onclick='next()']").style.display = "inline-block";
+        document.getElementById("progress").style.display = "block";
+        document.getElementById("bar").style.display = "block";
+        document.getElementById("timer").style.display = "block";
         document.getElementById("remaining").style.display = "block";
         document.getElementById("qnum").style.display = "block";
-        document.getElementById("bar").style.display = "block";
-        document.querySelector("button[onclick='next()']").style.display = "block";
-      
+
         // attiva il tab corretto
         if (s === "set1") document.getElementById("t1").classList.add("active");
         if (s === "set2") document.getElementById("t2").classList.add("active");
@@ -4600,16 +4600,16 @@
         document.getElementById("t_history").classList.add("active");
       
         // Nascondi completamente l'interfaccia del quiz
-        document.getElementById("summary").style.display = "none";
-        document.getElementById("qtext").style.display = "none";
-        document.getElementById("opts").style.display = "none";
-        document.getElementById("fb").style.display = "none";
+        document.querySelector(".subcard").style.display = "none";
+        document.querySelector("button[onclick='next()']").style.display = "none";
+        document.getElementById("progress").style.display = "none";
+        document.getElementById("bar").style.display = "none";
+        document.getElementById("timer").style.display = "none";
         document.getElementById("remaining").style.display = "none";
         document.getElementById("qnum").style.display = "none";
-        document.getElementById("bar").style.display = "none";
-        document.querySelector("button[onclick='next()']").style.display = "none"; // tasto Next
+        document.getElementById("summary").style.display = "none";
       
-        // Mostra solo history
+        // Mostra History
         renderHistory();
         document.getElementById("history").style.display = "block";
       }
