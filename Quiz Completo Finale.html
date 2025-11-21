@@ -4459,14 +4459,15 @@
         saveResultToHistory(curr, correct, total, perc, passed);
       }
 
+      // Format time for display
       function formatSeconds(sec) {
         const m = Math.floor(sec / 60);
         const s = sec % 60;
         return m + "m " + String(s).padStart(2, "0") + "s";
       }
       
+      // Save history entry to localStorage
       function saveResultToHistory(mode, correct, total, perc, passed) {
-        // tempo impiegato = tempo iniziale - tempo residuo (mai negativo)
         let elapsed = initialTime - tLeft;
         if (elapsed < 0) elapsed = 0;
       
@@ -4487,9 +4488,8 @@
           history = [];
         }
       
-        // mettiamo l'ultimo tentativo in cima
         history.unshift(attempt);
-        // tieni solo gli ultimi 20
+      
         if (history.length > 20) {
           history = history.slice(0, 20);
         }
@@ -4498,6 +4498,7 @@
         renderHistory();
       }
       
+      // Render history table
       function renderHistory() {
         const box = document.getElementById("history");
         const list = document.getElementById("historyList");
@@ -4526,9 +4527,9 @@
           "<th style='text-align:left; padding:4px;'>Time</th>" +
           "</tr></thead><tbody>";
       
-        history.forEach((h) => {
+        history.forEach(h => {
           const d = new Date(h.date);
-          const dateStr = d.toLocaleString(); // formato leggibile locale
+          const dateStr = d.toLocaleString();
           html += "<tr>" +
             `<td style='padding:4px;'>${dateStr}</td>` +
             `<td style='padding:4px;'>${h.mode.toUpperCase()}</td>` +
