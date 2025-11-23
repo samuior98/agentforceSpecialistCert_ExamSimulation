@@ -4,7 +4,8 @@ This project contains a complete simulation of the Agentforce Specialist Certifi
 
 - Set 1 (60 questions)
 - Set 2 (60 questions)
-- 60-question simulation
+- 10/15/20-question simulation
+- Review past completed quiz
 - Exam-style timer
 - Animations
 - Final assessment with percentage and pass/fail
