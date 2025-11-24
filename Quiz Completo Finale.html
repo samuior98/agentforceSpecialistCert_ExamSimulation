@@ -4283,29 +4283,33 @@
 
       function buildSidebar() {
         const sb = document.getElementById("sidebar");
-        sb.innerHTML = "<div class='side-title'>Questions</div>";
-        for (let i = 0; i < currentSet.length; i++) {
-          const div = document.createElement("div");
-          div.className = "side-item";
-          const st = answers[curr]?.[i];
-          let icon = "📝";
-          if (st === "correct") {
-            div.classList.add("side-correct");
-            icon = "✔️";
-          }
+        if (!box) return;
 
-          if (st === "wrong") {
-            div.classList.add("side-wrong");
-            icon = "❌";
-          }
+        let html = "<div class='side-title'>Questions</div>";
 
-          div.innerHTML = `<span>${icon}</span> ${i + 1}`;
-          div.onclick = () => {
-            idx = i;
-            render();
-          };
-          sb.appendChild(div);
+        if (!currentSet) {
+          box.innerHTML = html;
+          return;
         }
+        
+        const total = currentSet.length;
+        
+        for (let i = 0; i < total; i++) {
+          clet status = "";
+          let map = answers[curr];
+      
+          if (map && map[i]) {
+            status = map[i].result === "correct" ? "side-correct" : "side-wrong";
+          }
+      
+          html += `
+            <div class="side-item ${status}" onclick="goToQuestion(${i})">
+              <span>📝</span> ${i + 1}
+            </div>
+          `;
+        }
+
+        box.innerHTML = html;
       }
 
       function render() {
