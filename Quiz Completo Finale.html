@@ -4386,11 +4386,16 @@
         answers[curr][idx] = correct ? "correct" : "wrong";
 
         //const opt = document.getElementById("opt_" + val);
-        if (opt) {
+        /*if (opt) {
           opt.classList.remove("correct-anim", "wrong-anim");
           void opt.offsetWidth;
           opt.classList.add(correct ? "correct-anim" : "wrong-anim");
-        }
+        }*/
+
+        //Disabilita tutte le risposte dopo la prima selezione
+        document.querySelectorAll("input[name='opt']").forEach(r => {
+            r.disabled = true;
+        });
 
         buildSidebar();
       }
