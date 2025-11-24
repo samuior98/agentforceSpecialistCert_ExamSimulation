@@ -4333,8 +4333,15 @@
         document.getElementById("bar").style.width = (idx / total) * 100 + "%";
         document.getElementById("qtext").innerText = q.question;
 
+        // 🔒 Se la domanda NON ha un ordine salvato, salvalo ora
+        if (!q._order) {
+          q._order = shuffle([...q.options]);
+        }
+        
+        let randomized = q._order;
         let h = "";
-        let randomized = shuffle(q.options);
+        
+        //let randomized = shuffle(q.options);
         randomized.forEach((o) => {
           h += `<label class='option-label' id='opt_${o.key}'>
               <input type='radio' name='opt' value='${o.key}' onclick='check("${o.key}")'>
@@ -4343,11 +4350,26 @@
         });
         
         document.getElementById("opts").innerHTML = h;
-        // 🔒 Se la domanda è già stata risposta → disabilita tutte le opzioni
+        // Se la domanda è già stata risposta, disabilita le opzioni
         if (answers[curr] && answers[curr][idx]) {
-            document.querySelectorAll("input[name='opt']").forEach(r => {
-                r.disabled = true;
-            });
+          const selected = answers[curr][idx].selectedOption;
+        
+          document.querySelectorAll("input[name='opt']").forEach(r => {
+            r.disabled = true;
+            if (r.value === selected) {
+              r.checked = true;
+            }
+          });
+        
+          // evidenziazione corretta/sbagliata come in check()
+          let q = currentSet[idx];
+          let rightOpt = document.getElementById("opt_" + q.correct);
+          if (rightOpt) rightOpt.classList.add("correct-fixed");
+        
+          if (selected !== q.correct) {
+            let wrongOpt = document.getElementById("opt_" + selected);
+            if (wrongOpt) wrongOpt.classList.add("wrong-fixed");
+          }
         }
       }
 
@@ -4390,7 +4412,7 @@
         /**/
 
         if (!answers[curr]) answers[curr] = {};
-        answers[curr][idx] = correct ? "correct" : "wrong";
+        //answers[curr][idx] = correct ? "correct" : "wrong";
 
         //const opt = document.getElementById("opt_" + val);
         /*if (opt) {
@@ -4399,10 +4421,10 @@
           opt.classList.add(correct ? "correct-anim" : "wrong-anim");
         }*/
 
-        //Disabilita tutte le risposte dopo la prima selezione
-        document.querySelectorAll("input[name='opt']").forEach(r => {
-            r.disabled = true;
-        });
+        answers[curr][idx] = {
+          result: correct ? "correct" : "wrong",
+          selectedOption: val
+        };
 
         buildSidebar();
       }
@@ -4429,7 +4451,8 @@
         const total = currentSet.length;
         let correct = 0;
         for (let k in map) {
-          if (map[k] === "correct") correct++;
+          //if (map[k] === "correct") correct++;
+          if (map[k].result === "correct") correct++;
         }
         const perc = Math.round((correct / total) * 100);
         const passed = perc >= 73;
