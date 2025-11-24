@@ -4341,7 +4341,14 @@
               ${o.text}
             </label>`;
         });
+        
         document.getElementById("opts").innerHTML = h;
+        // 🔒 Se la domanda è già stata risposta → disabilita tutte le opzioni
+        if (answers[curr] && answers[curr][idx]) {
+            document.querySelectorAll("input[name='opt']").forEach(r => {
+                r.disabled = true;
+            });
+        }
       }
 
       function check(val) {
