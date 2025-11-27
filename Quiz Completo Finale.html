@@ -232,7 +232,6 @@
   <body>
     <div class="layout">
       <div class="sidebar" id="sidebar"></div>
-
       <div class="container">
         <div class="card">
           <div class="tabs">
@@ -1258,8 +1257,85 @@
             ],
             correct: "C",
           },
+          {
+            question:
+              "Universal Containers needs to restrict access to refund processing actions so only customers with Active account status can initiate refunds. How should an Agentforce Specialist apply the restriction deterministically?",
+            options: [
+              { key: "A", text: "Create a Flex Prompt Template that has instructions to check for account status." },
+              { key: "B", text: "Create a context variable for the account status field and apply a conditional filter AccountStatus equals 'Active' to refund actions." },
+              { key: "C", text: "Include step-by-step instructions at the topic level and action level explaining the rules and examples." },
+            ],
+            correct: "B",
+          },
+          {
+            question:
+              "Universal Containers wants to allow its service agents to query the current fulfillment status of an order with natural language. There is an existing autolaunched flow to query the Information from Oracle ERP, which is the system of record for the order fulfillment process. How should an Agentforce Specialist apply the power of conversational AI to this use case?",
+            options: [
+              { key: "A", text: "Create a custom Agent action which calls a flow." },
+              { key: "B", text: "Configure the Integration Flow Standard Action in Agent Builder." },
+              { key: "C", text: "Create a Flex prompt template in Prompt Builder." }
+            ],
+            correct: "A",
+          }
         ],
         set2: [
+          {
+            question:
+              "In the context of retriever and search indexes, what best describes the data preparation process in Data Cloud?",
+            options: [
+              {
+                key: "A",
+                text: "Data preparation focuses on real-time data ingestion and dynamic indexing to generate dynamic grounding reference data without preprocessing steps.",
+              },
+              {
+                key: "B",
+                text: "Data preparation entails aggregating, normalizing, and encoding structured datasets to ensure compliance with data governance and security protocols.",
+              },
+              {
+                key: "C",
+                text: "Data preparation Involves loading, chunking, vectorizing, and storing content in a search-optimized manner to support retrieval from the vector database.",
+              },
+            ],
+            correct: "C",
+          },
+          {
+            question:
+              "An Agentforce Specialist is creating a custom action in Agentforce. Which option is available for the Agentforce Specialist to choose for the custom Agent action?",
+            options: [
+              {
+                key: "A",
+                text: "Apex Trigger",
+              },
+              {
+                key: "B",
+                text: "SOQL",
+              },
+              {
+                key: "C",
+                text: "Flows",
+              },
+            ],
+            correct: "C",
+          },
+          {
+            question:
+              "What is the role of the large language model (LLM) in understanding intent and executing an Agent Action?",
+            options: [
+              {
+                key: "A",
+                text: "Find similar requested topics and provide the actions that need to be executed.",
+              },
+              {
+                key: "B",
+                text: "Identify the best matching topic and actions and correct order of execution.",
+              },
+              {
+                key: "C",
+                text: "Determine a user's topic access and sort actions by priority to be executed.",
+              },
+            ],
+            correct: "B",
+          },
           {
             question:
               "What is an Agentforce Specialist able to do when the 'Enrich event logs with conversation data' setting in the Agentforce configuration is enabled?",
@@ -3016,10 +3092,7 @@
             options: [
               { key: "A", text: "Use External Service Record merge fields." },
               { key: "B", text: "Convert the JSON to an XML merge field." },
-              {
-                key: "C",
-                text: "Use the 'Add Prompt Instructions' flow element.",
-              },
+              { key: "C", text: "Use the 'Add Prompt Instructions' flow element." }
             ],
             correct: "A",
           },
@@ -4056,16 +4129,16 @@
             options: [
               {
                 key: "A",
-                text: "Use personal developer orgs unrepresentative of production data,",
+                text: "Use personal developer orgs unrepresentative of production data,"
               },
               {
                 key: "B",
-                text: "Use production org directly with test assertions.",
+                text: "Use production org directly with test assertions."
               },
               {
                 key: "C",
-                text: "Use sandbox environments replicated from production for safe testing,",
-              },
+                text: "Use sandbox environments replicated from production for safe testing,"
+              }
             ],
             correct: "C",
           },
@@ -4075,7 +4148,7 @@
             options: [
               { key: "A", text: "Hybrid search" },
               { key: "B", text: "Vector search" },
-              { key: "C", text: "Keyword search" },
+              { key: "C", text: "Keyword search" }
             ],
             correct: "B",
           },
@@ -4094,7 +4167,7 @@
               {
                 key: "C",
                 text: "In the data library setting window, under Knowledge Settings, enable Use Public Knowledge Article and select Show sources,",
-              },
+              }
             ],
             correct: "C",
           },
@@ -4104,10 +4177,7 @@
             options: [
               { key: "A", text: "Agent-to-Agent (A2A) protocol support" },
               { key: "B", text: "Model Context Protocol (MCP) server support" },
-              {
-                key: "C",
-                text: "MuleSoft connector for custom hosted processes",
-              },
+              { key: "C", text: "MuleSoft connector for custom hosted processes" }
             ],
             correct: "B",
           },
@@ -4117,7 +4187,7 @@
             options: [
               { key: "A", text: "Sales Agent" },
               { key: "B", text: "Commerce Agent" },
-              { key: "C", text: "Service Agent" },
+              { key: "C", text: "Service Agent" }
             ],
             correct: "C",
           },
@@ -4127,7 +4197,7 @@
             options: [
               { key: "A", text: "Model Context Protocol (MCP)" },
               { key: "B", text: "Hugging Face" },
-              { key: "C", text: "Agent-to-Agent (A2A) protocol" },
+              { key: "C", text: "Agent-to-Agent (A2A) protocol" }
             ],
             correct: "A",
           },
@@ -4137,7 +4207,7 @@
             options: [
               { key: "A", text: "The priority given to each action" },
               { key: "B", text: "The explicit order of actions in the topic" },
-              { key: "C", text: "The name and instructions of the actions" },
+              { key: "C", text: "The name and instructions of the actions" }
             ],
             correct: "A",
           },
@@ -4147,12 +4217,13 @@
             options: [
               { key: "A", text: "SDR Agent" },
               { key: "B", text: "Sales Coach" },
-              { key: "C", text: "Commerce Agent" },
+              { key: "C", text: "Commerce Agent" }
             ],
             correct: "A",
           },
         ],
       };
+      
       let curr = "set1";
       let idx = 0;
       let currentSet = [];
